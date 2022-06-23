@@ -9,6 +9,7 @@ function Tasks () {
     const [tasks, setTask] = useState([])
     const [editText, setEditText] = useState('')
     const [edit, setEdit] = useState(false)
+    const [todoId, setTodoId] = useState(null)
 
     function handleChange(e){
         setText(e.target.value)
@@ -45,12 +46,12 @@ function Tasks () {
         const index = tasks_c.indexOf(todo)
         
         let task = {...tasks_c[index]}
+        setTodoId(index)
         setEdit(!edit)
         setEditText(task.title)
     }
 
     function handleEditChange(e) {
-        // console.log();
         setEditText(e.currentTarget.value)
     }
     function handleEditSubmit(e) {
@@ -76,6 +77,7 @@ function Tasks () {
             editTask={todo => handleEditTaskClick(todo)}
             changeStatus={handleChangeStatus}
             editChange={handleEditChange}
+            todoId={todoId}
             />
     })
 
