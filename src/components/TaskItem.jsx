@@ -15,7 +15,9 @@ const TaskItem = ({task, changeStatus, i, deleteTask, editTask, editMode, editTe
         )}
 
         <input type="checkbox" checked={task.status} id={i} onChange={changeStatus}/>
-        <button onClick={() => editTask(task)}>✍</button> 
+        {!task.status && 
+            <button onClick={() => editTask(task)}>✍</button> 
+        }
         <button onClick={() => deleteTask(task)}>❌</button> 
         
     </li>

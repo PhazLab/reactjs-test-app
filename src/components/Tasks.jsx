@@ -54,13 +54,15 @@ function Tasks () {
     function handleEditChange(e) {
         setEditText(e.currentTarget.value)
     }
-    function handleEditSubmit(e) {
+    function handleEditSubmit(e, todo) {
         e.preventDefault()
         setEdit(!edit)
         const tasks_c = [...tasks]
-        console.log(e.currentTarget.id);
-        // const task = {...tasks_c} 
-
+        const task = {...tasks_c[todoId]}
+        task.title = editText
+        console.log(task);
+        tasks_c[todoId] = task
+        setTask(tasks_c)
     }
 
 
@@ -72,7 +74,7 @@ function Tasks () {
             key={index}
             editMode={edit}
             editText={editText}
-            editSubmit={handleEditSubmit}
+            editSubmit={(e,todo) => handleEditSubmit(e,todo)}
             deleteTask={todo => handleDeleteClicked(todo)}
             editTask={todo => handleEditTaskClick(todo)}
             changeStatus={handleChangeStatus}
